@@ -1,6 +1,8 @@
 ﻿using System;
 using FluentEmail.Mailgun;
 using FluentEmail.Core;
+using Config;
+using System.Collections.Generic;
 
 namespace Emailer
 {
@@ -8,11 +10,13 @@ namespace Emailer
     {
         public void SendEmail(string output)
         {
-            string config = GetConfig.LoadConfig();
-            string domain = config.domain;
-            string apiKey = config.apiKey;
+            Mailgun mailgun = new Mailgun();
 
-            System.Console.WriteLine("This is a " + config);
+            mailgun = GetMailgunConfig();
+            string domain = mailgun.domain;
+            string apiKey = mailgun.apiKey;
+
+            System.Console.WriteLine("This is a " + mailgun);
 
             var sender = new MailgunSender(
                 domain,
@@ -28,7 +32,23 @@ namespace Emailer
                 .Send();
         }
 
-        public EmailWhenDone()
+        public Mailgun GetMailgunConfig()
+        {
+            var config = GetConfig.LoadConfig();
+
+            foreach (var item in config)
+            {
+                return new Mailgun
+                {
+                    domain = item.domain.ToString(),
+                    apiKey = item.apiKey.ToString(),
+                };
+            }
+
+            return null;
+        }
+
+        public EmailIP()
         {
             
         }

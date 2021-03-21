@@ -1,5 +1,5 @@
 ﻿using System;
-using Emailer.EmailIP;
+using Emailer;
 
 namespace IPAlert
 {
@@ -7,7 +7,9 @@ namespace IPAlert
     {
         static void Main(string[] args)
         {
-            EmailIP.SendEmail("Test.")
+            EmailIP emailer = new EmailIP();
+
+            emailer.SendEmail("Test.");
         }
     }
 }

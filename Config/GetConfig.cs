@@ -1,21 +1,27 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Config
 {
    public static class GetConfig
     {
-        public static List<Key> LoadConfig()
+        public static List<Mailgun> LoadConfig()
         {
-            using (StreamReader sr = new StreamReader(@"/home/ubuntu/workspace/csharp/IPAlert/Config/config.json"))
+            // /home/ubuntu/workspace/csharp/IPAlert/Config/config.json
+
+            using (StreamReader sr = new StreamReader(@"C:\workspace\csharp\IPAlert\Config\config.json"))
             {
                 string json = sr.ReadToEnd();
-                List<Key> keys = JsonConvert.DeserializeObject<List<Key>>(json);
+                List<Mailgun> keys = JsonConvert.DeserializeObject<List<Mailgun>>(json);
                 return keys;
             }
         }
     }
 
-    public class MailGun
+    public class Mailgun
     {
         public string domain;
         public string apiKey;
