@@ -594,3 +594,5 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,windows,linux,csharp,git
 
+# Config
+*.json
