@@ -8,14 +8,15 @@ namespace Config
 {
    public static class GetConfig
     {
-        public static List<Mailgun> LoadConfig()
+        public static Mailgun LoadConfig()
         {
             // /home/ubuntu/workspace/csharp/IPAlert/Config/config.json
+            // C:\workspace\csharp\IPAlert\Config\config.json
 
-            using (StreamReader sr = new StreamReader(@"C:\workspace\csharp\IPAlert\Config\config.json"))
+            using (StreamReader sr = new StreamReader(@"F:\workspace\csharp\IPAlert\Config\config.json"))
             {
                 string json = sr.ReadToEnd();
-                List<Mailgun> keys = JsonConvert.DeserializeObject<List<Mailgun>>(json);
+                Mailgun keys = JsonConvert.DeserializeObject<Mailgun>(json);
                 return keys;
             }
         }
@@ -23,7 +24,9 @@ namespace Config
 
     public class Mailgun
     {
-        public string domain;
-        public string apiKey;
+        public string domain { get; set; }
+        public string apiKey { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
     }
 }
