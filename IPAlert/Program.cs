@@ -18,7 +18,9 @@ namespace IPAlert
             string internalIP = grabIP.GetInternalIPAddress();
             string externalIP = grabIP.GetExternalAddress();
 
-            emailer.SendEmail("Your Internal IP is: " + internalIP + "\nYour External IP is: " + externalIP);
+            await emailer.SendEmailAsync("Your Internal IP is: " + internalIP + "\nYour External IP is: " + externalIP);
+
+            
         }
     }
 }

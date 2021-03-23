@@ -11,7 +11,7 @@ namespace Emailer
 {
     public class EmailIP
     {
-        public void SendEmail(string output)
+        public async Task SendEmailAsync(string output)
         {
             Mailgun mailgun = new Mailgun();
 
@@ -31,8 +31,9 @@ namespace Emailer
                 .From("nateim3@gmail.com")
                 .To("nathan.moritz@protonmail.com", "Nathan")
                 .Subject("Processing Done.")
-                .Body(output)
-                .Send();
+                .Body(output);
+
+            await email.SendAsync();
         }
 
             //public async Task SendEmailAsync()
